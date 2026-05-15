@@ -1,0 +1,5 @@
+base: roblox
+name: selene_defs
+globals:
+  __ROACT_17_MOCK_SCHEDULER__:
+    property: override-fields
