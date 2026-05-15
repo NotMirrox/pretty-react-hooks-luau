@@ -1,9 +1,9 @@
 local useLatestCallback = require(script["use-latest-callback"])
+local useMountEffect = require(script["use-mount-effect"])
 local usePrevious = require(script["use-previous"])
-local useUpdate = require(script["use-update"])
 
 return {
 	useLatestCallback = useLatestCallback,
+	useMountEffect = useMountEffect,
 	usePrevious = usePrevious,
-	useUpdate = useUpdate,
 }
