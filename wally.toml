@@ -1,0 +1,19 @@
+[package]
+name = "notmirrox/pretty-react-hooks"
+description = "A collection of useful hooks for roblox-ts and React ported to Luau"
+version = "0.1.0"
+license = "MIT"
+authors = ["mirrox", "littensy"]
+
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[place]
+shared-packages = "game.ReplicatedStorage.Packages"
+
+[dependencies]
+React = "jsdotlua/react@^17.2.1"
+
+[dev-dependencies]
+ReactRoblox = "jsdotlua/react-roblox@^17.2.1"
+TestEZ = "roblox/testez@0.4.1"

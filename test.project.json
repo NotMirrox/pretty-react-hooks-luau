@@ -1,0 +1,17 @@
+{
+  "name": "pretty-react-hooks-test",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "DevPackages": {
+        "$path": "DevPackages"
+      },
+      "Packages": {
+        "pretty-react-hooks": {
+          "$path": "src"
+        },
+        "$path": "Packages"
+      }
+    }
+  }
+}
