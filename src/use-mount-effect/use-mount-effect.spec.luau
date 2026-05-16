@@ -10,7 +10,7 @@ return function()
 		local renders = 0
 		local mounted = false
 
-		local result = renderHook(function()
+		local hook = renderHook(function()
 			useMountEffect(function()
 				mounted = not mounted
 			end)
@@ -22,7 +22,7 @@ return function()
 		expect(renders).to.equal(1)
 		expect(mounted).to.equal(true)
 
-		result.rerender()
+		hook.rerender()
 		expect(renders).to.equal(2)
 		expect(mounted).to.equal(true)
 	end)
@@ -30,7 +30,7 @@ return function()
 	it("should run cleanup on unmount", function()
 		local cleaned = false
 
-		local result = renderHook(function()
+		local hook = renderHook(function()
 			useMountEffect(function()
 				return function()
 					cleaned = true
@@ -40,7 +40,7 @@ return function()
 		end)
 
 		expect(cleaned).to.equal(false)
-		result.unmount()
+		hook.unmount()
 		expect(cleaned).to.equal(true)
 	end)
 end

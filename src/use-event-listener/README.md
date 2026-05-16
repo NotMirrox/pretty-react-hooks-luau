@@ -29,39 +29,23 @@ The `listener` parameter is memoized for you, and will not cause a reconnect if 
 
 ### 📗 Returns
 
--   `nil`
+-   `()`
 
 ### 📘 Example
 
 ```luau
-local Players = game:GetService("Players")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local React = require(ReplicatedStorage.Packages.React)
-local hooks = require(ReplicatedStorage.Packages.PrettyReactHooks)
-
-local useEventListener = hooks.useEventListener
-
 local function PlayerJoined()
 	useEventListener(Players.PlayerAdded, function(player)
 		print(`{player.DisplayName} joined!`)
 	end)
 
-	return React.createElement("Frame")
+	return react.createElement("Frame")
 end
 ```
 
 ### 📘 Example: function-style event (ReactRipple)
 
 ```luau
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local React = require(ReplicatedStorage.Packages.React)
-local ReactRipple = require(ReplicatedStorage.Packages.ReactRipple)
-local hooks = require(ReplicatedStorage.Packages.PrettyReactHooks)
-
-local useEventListener = hooks.useEventListener
-
 local function FadingLabel()
 	local motion = ReactRipple.useMotion(0)
 
@@ -69,7 +53,7 @@ local function FadingLabel()
 		print("motion finished")
 	end)
 
-	return React.createElement("TextLabel", {
+	return react.createElement("TextLabel", {
 		TextTransparency = motion:get(),
 	})
 end

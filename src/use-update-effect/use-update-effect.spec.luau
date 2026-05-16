@@ -9,7 +9,7 @@ return function()
 	it("should call effect on update only", function()
 		local renders = 0
 
-		local result = renderHook(function()
+		local hook = renderHook(function()
 			useUpdateEffect(function()
 				renders += 1
 				return nil
@@ -20,14 +20,14 @@ return function()
 
 		expect(renders).to.equal(0)
 
-		result.rerender()
+		hook.rerender()
 		expect(renders).to.equal(1)
 	end)
 
 	it("should call effect with dependencies", function()
 		local renders = 0
 
-		local result = renderHook(function(value: string?)
+		local hook = renderHook(function(value: string?)
 			useUpdateEffect(function()
 				renders += 1
 				return nil
@@ -38,13 +38,13 @@ return function()
 
 		expect(renders).to.equal(0)
 
-		result.rerender("test")
+		hook.rerender("test")
 		expect(renders).to.equal(1)
 
-		result.rerender("test")
+		hook.rerender("test")
 		expect(renders).to.equal(1)
 
-		result.rerender("test2")
+		hook.rerender("test2")
 		expect(renders).to.equal(2)
 	end)
 end

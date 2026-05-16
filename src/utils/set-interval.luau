@@ -1,19 +1,19 @@
 local RunService = game:GetService("RunService")
 
 --[[
-	Schedules `callback` to run every `delay` seconds. Returns a function that
-	cancels the interval.
-	@param callback The callback to run.
-	@param delay The delay in seconds between each call.
+	Schedule a callback to be called every `interval` seconds. Returns a
+	function that can be called to stop the timer.
+	@param callback The callback to call every `interval` seconds.
+	@param interval The interval in seconds.
 	@return A cleanup function.
 ]]
-local function setInterval(callback: () -> (), delay: number): () -> ()
+local function setInterval(callback: () -> (), interval: number): () -> ()
 	local timer = 0
 	local connection
 	connection = RunService.Heartbeat:Connect(function(deltaTime: number)
 		timer += deltaTime
-		if timer >= delay then
-			timer -= delay
+		if timer >= interval then
+			timer -= interval
 			callback()
 		end
 	end)

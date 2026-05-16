@@ -8,11 +8,9 @@ Returns a function that can be called to force an update of the component.
 
 The function returned by `useUpdate` is recreated when it causes an update, making it useful to track re-renders caused by this hook.
 
-### 📕 Parameters
-
 ### 📗 Returns
 
--   A function that can be called to force an update of the component.
+-   A function that forces a re-render of the component.
 
 ### 📘 Example
 

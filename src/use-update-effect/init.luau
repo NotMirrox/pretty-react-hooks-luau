@@ -1,6 +1,6 @@
 local react = require(script.Parent.Parent.React)
 
-export type EffectCallback = () -> (() -> ())?
+type EffectCallback = () -> (() -> ())?
 
 --[[
 	Runs a callback when the component is re-rendered. Does not run on the
@@ -9,7 +9,7 @@ export type EffectCallback = () -> (() -> ())?
 	@param effect The callback to run.
 	@param dependencies The dependencies to watch for changes.
 ]]
-local function useUpdateEffect(effect: EffectCallback, dependencies: { any }?)
+local function useUpdateEffect(effect: EffectCallback, dependencies: { any }?): ()
 	local isMounted = react.useRef(false)
 
 	react.useEffect(function()

@@ -12,22 +12,16 @@ Calls the callback when the component unmounts. This is useful for cleaning up s
 
 ### 📗 Returns
 
--   `void`
+-   `()`
 
 ### 📘 Example
 
 ```luau
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local React = require(ReplicatedStorage.Packages.React)
-local PrettyReactHooks = require(ReplicatedStorage.Packages.PrettyReactHooks)
-local useUnmountEffect = PrettyReactHooks.useUnmountEffect
-
 local function UnmountLogger()
 	useUnmountEffect(function()
 		print("Unmounting...")
 	end)
 
-	return React.createElement("Frame")
+	return react.createElement("Frame")
 end
 ```

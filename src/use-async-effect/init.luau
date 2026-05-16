@@ -10,7 +10,7 @@ type Promise = { cancel: (self: Promise) -> () }
 	@param effect The async effect to run.
 	@param deps The dependencies to run the effect on.
 ]]
-local function useAsyncEffect(effect: () -> Promise, deps: { any }?)
+local function useAsyncEffect(effect: () -> Promise, deps: { any }?): ()
 	react.useEffect(function()
 		local promise = effect()
 

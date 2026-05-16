@@ -18,7 +18,7 @@ end
 	Defaults to a strict equality check (`==`).
 	@return A mutable reference to the value.
 ]]
-local function useLatest<T>(value: T, predicate: Predicate<T>?)
+local function useLatest<T>(value: T, predicate: Predicate<T>?): { current: T }
 	local predicateFn: Predicate<T> = predicate or isStrictEqual
 	local ref = react.useRef(value)
 

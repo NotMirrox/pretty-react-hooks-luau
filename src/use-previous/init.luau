@@ -2,7 +2,7 @@ local react = require(script.Parent.Parent.React)
 
 type Predicate<T> = (previous: T?, current: T) -> boolean
 
-local function isStrictEqual(previous: unknown?, current: unknown): boolean
+local function isStrictEqual(previous: unknown?, current: unknown)
 	return previous == current
 end
 

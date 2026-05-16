@@ -6,7 +6,7 @@ local useLatest = require(script.Parent["use-latest"])
 
 	@param callback The callback to call.
 ]]
-local function useUnmountEffect(callback: () -> ())
+local function useUnmountEffect(callback: () -> ()): ()
 	local callbackRef = useLatest(callback)
 
 	react.useEffect(function()

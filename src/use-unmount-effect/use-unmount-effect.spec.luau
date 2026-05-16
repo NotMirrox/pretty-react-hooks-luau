@@ -9,7 +9,7 @@ return function()
 	it("should call when component unmounts", function()
 		local called = false
 
-		local result = renderHook(function()
+		local hook = renderHook(function()
 			useUnmountEffect(function()
 				called = true
 			end)
@@ -17,14 +17,14 @@ return function()
 		end)
 
 		expect(called).to.equal(false)
-		result.unmount()
+		hook.unmount()
 		expect(called).to.equal(true)
 	end)
 
 	it("should not call on rerender", function()
 		local called = false
 
-		local result = renderHook(function()
+		local hook = renderHook(function()
 			useUnmountEffect(function()
 				called = true
 			end)
@@ -32,14 +32,14 @@ return function()
 		end)
 
 		expect(called).to.equal(false)
-		result.rerender()
+		hook.rerender()
 		expect(called).to.equal(false)
 	end)
 
 	it("should call the last callback on unmount", function()
 		local called = 0
 
-		local result = renderHook(function(callback: () -> ())
+		local hook = renderHook(function(callback: () -> ())
 			useUnmountEffect(callback)
 			return nil
 		end, {
@@ -48,10 +48,10 @@ return function()
 			end,
 		})
 
-		result.rerender(function()
+		hook.rerender(function()
 			called += 1
 		end)
-		result.unmount()
+		hook.unmount()
 		expect(called).to.equal(1)
 	end)
 end

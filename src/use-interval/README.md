@@ -28,21 +28,14 @@ The callback is memoized for you and will not reset the interval if it changes.
 ### 📘 Example
 
 ```luau
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local React = require(ReplicatedStorage.Packages.React)
-local hooks = require(ReplicatedStorage.Packages.PrettyReactHooks)
-
-local useInterval = hooks.useInterval
-
 local function Interval()
-	local count, setCount = React.useState(0)
+	local count, setCount = react.useState(0)
 
 	useInterval(function()
 		setCount(count + 1)
 	end, 1)
 
-	return React.createElement("TextLabel", {
+	return react.createElement("TextLabel", {
 		Text = `Count: {count}`,
 	})
 end

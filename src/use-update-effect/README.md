@@ -1,19 +1,19 @@
 ## 🪝 `useUpdateEffect`
 
 ```luau
-function useUpdateEffect(callback: () -> (() -> ())?, dependencies: { unknown }?): ()
+function useUpdateEffect(effect: () -> (() -> ())?, dependencies: { any }?): ()
 ```
 
-Runs a callback when the component updates. Does not run on mount.
+Runs an effect when the component updates. Does not run on mount.
 
 ### 📕 Parameters
 
--   `callback` - The callback to run on update. Supports returning a cleanup function.
+-   `effect` - The effect to run on update. May return a cleanup function.
 -   `dependencies` - Optional dependencies to watch for changes.
 
 ### 📗 Returns
 
--   `void`
+-   `()`
 
 ### 📘 Example
 

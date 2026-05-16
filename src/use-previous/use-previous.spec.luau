@@ -7,18 +7,17 @@ return function()
 	local it, expect = testez.globals().it, testez.globals().expect
 
 	it("should return nil on the first render", function()
-		local result = renderHook(function()
+		local hook = renderHook(function()
 			return usePrevious(0)
 		end).result
-		expect(result.current).to.equal(nil)
+
+		expect(hook.current).to.equal(nil)
 	end)
 
 	it("should return the previous value on rerender", function()
 		local hook = renderHook(function(props: { state: number })
 			return usePrevious(props.state)
-		end, {
-			initialProps = { state = 0 },
-		})
+		end, { initialProps = { state = 0 } })
 
 		expect(hook.result.current).to.equal(nil)
 

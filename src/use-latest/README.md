@@ -20,25 +20,17 @@ It takes an optional equality function to determine whether the values are equal
 ### 📘 Example
 
 ```luau
-local RunService = game:GetService("RunService")
-
-local React = require(ReplicatedStorage.Packages.React)
-local hooks = require(ReplicatedStorage.Packages.PrettyReactHooks)
-
-local useLatest = hooks.useLatest
-local useEventListener = hooks.useEventListener
-
 local function Counter()
-	local value, setValue = React.useState(0)
+	local value, setValue = react.useState(0)
 	local latestValue = useLatest(value)
 
 	useEventListener(RunService.Heartbeat, function()
 		print(latestValue.current)
 	end)
 
-	return React.createElement("TextButton", {
+	return react.createElement("TextButton", {
 		Text = `Count: {value}`,
-		[React.Event.Activated] = function()
+		[react.Event.Activated] = function()
 			setValue(value + 1)
 		end,
 	})

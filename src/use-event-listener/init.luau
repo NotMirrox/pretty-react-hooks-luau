@@ -84,7 +84,7 @@ end
 	@param listener The listener to subscribe with.
 	@param options Options for the subscription.
 ]]
-local function useEventListener<T...>(event: EventLike<T...>?, listener: ((T...) -> ())?, options: EventListenerOptions?)
+local function useEventListener<T...>(event: EventLike<T...>?, listener: ((T...) -> ())?, options: EventListenerOptions?): ()
 	local resolvedOptions: EventListenerOptions = options or {}
 	local once = resolvedOptions.once or false
 	local connected = if resolvedOptions.connected == nil then true else resolvedOptions.connected

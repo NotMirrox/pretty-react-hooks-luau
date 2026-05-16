@@ -1,6 +1,6 @@
 local react = require(script.Parent.Parent.React)
 
-export type EffectCallback = (() -> ()) | (() -> () -> ())
+type EffectCallback = (() -> ()) | (() -> () -> ())
 
 --[[
 	Runs a callback when the component is mounted.
@@ -8,7 +8,7 @@ export type EffectCallback = (() -> ()) | (() -> () -> ())
 	@param callback The callback to run on mount. May return a cleanup function
 	that runs on unmount.
 ]]
-local function useMountEffect(callback: EffectCallback)
+local function useMountEffect(callback: EffectCallback): ()
 	react.useEffect(callback, {})
 end
 

@@ -12,7 +12,7 @@ Runs a callback when the component mounts. May return a cleanup function that ru
 
 ### 📗 Returns
 
--   `void`
+-   `()`
 
 ### 📘 Example
 
