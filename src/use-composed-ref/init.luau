@@ -32,7 +32,7 @@ end
 	@return A ref function that calls all of the ref functions passed in.
 ]]
 local function useComposedRef<T>(...: RefFunction<T>?): RefFunction<T>
-	local refs = table.pack(...)
+	local refs: { RefFunction<T>? } = { ... }
 
 	local composedRef = react.useMemo(function()
 		return composeRefs(refs)
