@@ -3,7 +3,7 @@ local react = require(script.Parent.Parent.Parent.React)
 export type Binding<T> = react.Binding<T>
 export type BindingOrValue<T> = Binding<T> | T
 
-type BindingApi<T> = {
+export type BindingApi<T> = {
 	subscribe: (callback: (newValue: T) -> ()) -> () -> (),
 	update: (newValue: T) -> (),
 	getValue: () -> T,
