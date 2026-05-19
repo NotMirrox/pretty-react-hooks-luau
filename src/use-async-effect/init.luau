@@ -1,6 +1,7 @@
+local Promise = require(script.Parent.Parent.Promise)
 local react = require(script.Parent.Parent.React)
 
-type Promise = { cancel: (self: Promise) -> () }
+type Promise = Promise.Promise
 
 --[[
 	Runs an async effect and cancels the promise when unmounting the effect.

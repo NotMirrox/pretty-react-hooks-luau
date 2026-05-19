@@ -13,8 +13,8 @@ shared-packages = "game.ReplicatedStorage.Packages"
 
 [dependencies]
 React = "jsdotlua/react@^17.2.1"
+Promise = "howmanysmall/typed-promise@^4.0.6"
 
 [dev-dependencies]
 ReactRoblox = "jsdotlua/react-roblox@^17.2.1"
-TestEZ = "roblox/testez@0.4.1"	
-Promise = "evaera/promise@^4.0.0"
+TestEZ = "roblox/testez@0.4.1"

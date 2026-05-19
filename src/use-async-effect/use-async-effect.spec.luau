@@ -1,4 +1,4 @@
-local Promise = require(script.Parent.Parent.Parent.Parent.DevPackages.Promise)
+local Promise = require(script.Parent.Parent.Parent.Parent.Packages.Promise)
 local testez = require(script.Parent.Parent.utils.testez)
 local useAsyncEffect = require(script.Parent)
 

@@ -1,9 +1,9 @@
-local promiseTypes = require(script.Parent.utils["promise-types"])
+local Promise = require(script.Parent.Parent.Promise)
 local react = require(script.Parent.Parent.React)
 local useUnmountEffect = require(script.Parent["use-unmount-effect"])
 
-type Promise<T...> = promiseTypes.TypedPromise<T...>
-type Status = promiseTypes.Status
+type Promise<T...> = Promise.TypedPromise<T...>
+type Status = Promise.Status
 
 export type AsyncState<T> =
 	{ status: "Started", message: nil, value: nil }
