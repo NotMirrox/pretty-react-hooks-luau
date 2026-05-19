@@ -3,6 +3,11 @@ local react = require(script.Parent.Parent.React)
 
 type Promise = Promise.Promise
 
+type EffectCallback = (() -> ()) | (() -> () -> ())
+type PromiseCallback = () -> Promise
+
+type Callback = EffectCallback | PromiseCallback
+
 --[[
 	Runs an async effect and cancels the promise when unmounting the effect.
 	Note that effects paused by `:await()` still run while cancelled, so prefer
@@ -11,12 +16,17 @@ type Promise = Promise.Promise
 	@param effect The async effect to run.
 	@param deps The dependencies to run the effect on.
 ]]
-local function useAsyncEffect(effect: () -> Promise, deps: { any }?): ()
+local function useAsyncEffect(effect: Callback, deps: { any }): ()
 	react.useEffect(function()
-		local promise = effect()
+		local callback: Promise
+		if Promise.is(effect) then
+			callback = (effect :: PromiseCallback)()
+		else
+			callback = Promise.try(effect)
+		end
 
 		return function()
-			promise:cancel()
+			callback:cancel()
 		end
 	end, deps)
 end

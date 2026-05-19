@@ -1,10 +1,16 @@
 ## 🪝 `useAsyncEffect`
 
 ```luau
-function useAsyncEffect(effect: () -> Promise, deps: { any }?): ()
+function useAsyncEffect(effect: Callback, deps: { any }): ()
 ```
 
-Runs an async effect and cancels the promise when unmounting the effect.
+Runs an async effect and cancels the promise when unmounting the effect or when
+the dependencies change.
+
+`effect` may be either:
+
+-   A function that returns a `Promise` — called directly, the returned promise is tracked.
+-   A plain (possibly yielding) function — wrapped with `Promise.try` so it may yield without blocking the render.
 
 If you want to use the result or status of the callback, see [`useAsync`](../use-async).
 
@@ -22,7 +28,7 @@ If you want to use the result or status of the callback, see [`useAsync`](../use
 
 ### 📕 Parameters
 
--   `effect` - The async effect to run. Must return a Promise.
+-   `effect` - The async effect to run. Either a function returning a `Promise`, or a plain function that gets promisified via `Promise.try`.
 -   `deps` - The dependencies to watch for changes.
 
 ### 📗 Returns
