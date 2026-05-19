@@ -2,7 +2,8 @@ local Promise = require(script.Parent.Parent.Promise)
 local react = require(script.Parent.Parent.React)
 local useUnmountEffect = require(script.Parent["use-unmount-effect"])
 
-type Promise<T...> = Promise.TypedPromise<T...>
+type Promise = Promise.Promise
+type TypedPromise<T...> = Promise.TypedPromise<T...>
 type Status = Promise.Status
 
 export type AsyncState<T> =
@@ -16,7 +17,10 @@ type AnyAsyncState<T> = {
 	value: T?,
 }
 
-export type AsyncCallback<T, U...> = (U...) -> Promise<T>
+type EffectCallback<T, U...> = ((U...) -> T) | ((U...) -> ())
+type PromiseCallback<T, U...> = (U...) -> TypedPromise<T>
+
+type Callback<T, U...> = EffectCallback<T, U...> | PromiseCallback<T, U...>
 
 --[[
 	Returns a tuple containing the current state of the promise and a callback
@@ -25,8 +29,8 @@ export type AsyncCallback<T, U...> = (U...) -> Promise<T>
 	@param callback The async callback.
 	@return The state and a new callback.
 ]]
-local function useAsyncCallback<T, U...>(callback: AsyncCallback<T, U...>): (AsyncState<T>, AsyncCallback<T, U...>)
-	local currentPromise = react.useRef(nil :: Promise<T>?)
+local function useAsyncCallback<T, U...>(callback: Callback<T, U...>): (AsyncState<T>, PromiseCallback<T, U...>)
+	local currentPromise = react.useRef(nil :: TypedPromise<T>?)
 
 	local state, setState = react.useState({ status = "Started" } :: AnyAsyncState<T>)
 
@@ -39,7 +43,12 @@ local function useAsyncCallback<T, U...>(callback: AsyncCallback<T, U...>): (Asy
 			setState({ status = "Started" })
 		end
 
-		local promise = callback(...)
+		local promise: TypedPromise<T>
+		if Promise.is(callback) then
+			promise = (callback :: PromiseCallback<T, U...>)(...)
+		else
+			promise = Promise.try(callback, ...)
+		end
 
 		promise:andThen(function(value)
 			setState({ status = promise:getStatus(), value = value })

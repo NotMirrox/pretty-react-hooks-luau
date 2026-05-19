@@ -1,12 +1,19 @@
 ## 🪝 `useAsyncCallback`
 
 ```luau
-function useAsyncCallback<T, U...>(callback: AsyncCallback<T, U...>): (AsyncState<T>, AsyncCallback<T, U...>)
+function useAsyncCallback<T, U...>(
+	callback: ((U...) -> T) | ((U...) -> Promise<T>)
+): (AsyncState<T>, (U...) -> Promise<T>)
 ```
 
 A hook that wraps an async function and returns the current state and an executor.
 
 Calling the executor will cancel any pending promises and start a new one.
+
+`callback` may be either:
+
+-   A function that returns a `Promise` — called directly, the returned promise is tracked.
+-   A plain (possibly yielding) function — wrapped with `Promise.try` so it may yield without returning a promise.
 
 If you want the callback to run on mount or with dependencies, see [`useAsync`](../use-async).
 
@@ -24,7 +31,7 @@ If you want the callback to run on mount or with dependencies, see [`useAsync`](
 
 ### 📕 Parameters
 
--   `callback` - The async function to call.
+-   `callback` - The async function to call. Either a function returning a `Promise`, or a plain function that gets promisified via `Promise.try`.
 
 ### 📗 Returns
 
