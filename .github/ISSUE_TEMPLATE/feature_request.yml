@@ -1,0 +1,42 @@
+name: Feature / enhancement
+description: New behavior, API tweak, or quality-of-life on an existing Luau hook.
+title: "feat(<hook>): <short description>"
+labels: ["enhancement"]
+body:
+  - type: input
+    id: hook
+    attributes:
+      label: Hook or area
+      placeholder: use-xxx, or "tooling", "docs"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What's painful or missing today.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Sketch of the API/behavior. Pseudo-Luau OK.
+      render: lua
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+
+  - type: checkboxes
+    id: parity
+    attributes:
+      label: Upstream parity
+      options:
+        - label: This matches upstream littensy/pretty-react-hooks behavior
+        - label: This is a Luau-only addition (no upstream equivalent)

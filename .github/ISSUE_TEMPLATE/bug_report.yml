@@ -1,0 +1,60 @@
+name: Bug report
+description: A hook misbehaves, throws, or diverges from upstream behavior.
+title: "fix(<hook>): <short description>"
+labels: ["bug"]
+body:
+  - type: input
+    id: hook
+    attributes:
+      label: Hook
+      description: Which `use-*` hook? (e.g., `use-debounce-callback`)
+      placeholder: use-xxx
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      description: From `wally.toml` or `wally install` output.
+      placeholder: "0.x.y"
+    validations:
+      required: true
+
+  - type: input
+    id: react-luau
+    attributes:
+      label: React-Lua / Roblox version
+      placeholder: "react-lua 17.x, Roblox client 0.6xx"
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Actual behavior. Include error text exactly if any.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+      description: What should have happened. Reference upstream if porting parity.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal repro
+      description: Smallest Luau snippet that reproduces. Include hook usage + render driver.
+      render: lua
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra context
+      description: Logs, screenshots, related PRs, upstream commit links.

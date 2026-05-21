@@ -1,0 +1,44 @@
+name: Hook port request
+description: Port a `use-*` hook from upstream littensy/pretty-react-hooks.
+title: "feat(<hook>): port from upstream"
+labels: ["port", "enhancement"]
+body:
+  - type: input
+    id: hook
+    attributes:
+      label: Hook name
+      placeholder: use-xxx
+    validations:
+      required: true
+
+  - type: input
+    id: upstream-link
+    attributes:
+      label: Upstream file
+      description: Link to the TS source on littensy/pretty-react-hooks.
+      placeholder: "https://github.com/littensy/pretty-react-hooks/blob/main/src/hooks/use-xxx/use-xxx.ts"
+    validations:
+      required: true
+
+  - type: textarea
+    id: api-notes
+    attributes:
+      label: API surface
+      description: Signature, params, return. Any TS features that need Luau adaptation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: deviations
+    attributes:
+      label: Expected deviations
+      description: Where Luau port must differ from upstream (e.g., no Promise, signal vs callback).
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Port checklist
+      options:
+        - label: Spec test covers main behavior + edge cases
+        - label: README matches peer hook layout
+        - label: Public re-export added in `src/init.luau`

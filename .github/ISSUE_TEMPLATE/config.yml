@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Upstream (littensy/pretty-react-hooks)
+    url: https://github.com/littensy/pretty-react-hooks/issues
+    about: Issue with the original TypeScript hooks belongs upstream.
