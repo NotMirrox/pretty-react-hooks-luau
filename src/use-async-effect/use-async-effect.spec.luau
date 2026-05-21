@@ -76,7 +76,7 @@ return function()
 	end)
 
 	describe("plain effect (promisified)", function()
-		it("should run the effect", function()
+		it("should run the plain effect", function()
 			local calls = 0
 
 			renderHook(function()
@@ -89,7 +89,7 @@ return function()
 			expect(calls).to.equal(1)
 		end)
 
-		it("should run the effect when the dependencies change", function()
+		it("should run the plain effect when the dependencies change", function()
 			local calls = 0
 
 			local hook = renderHook(function(deps: { any })

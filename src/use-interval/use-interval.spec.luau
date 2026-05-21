@@ -11,16 +11,16 @@ return function()
 		local hook = renderHook(function()
 			useInterval(function()
 				count += 1
-			end, 0.03)
+			end, 0.1)
 			return nil
 		end)
 
 		expect(count).to.equal(0)
 
-		task.wait(0.04)
+		task.wait(0.13)
 		expect(count).to.equal(1)
 
-		task.wait(0.04)
+		task.wait(0.13)
 		expect(count).to.equal(2)
 		hook.unmount()
 	end)
