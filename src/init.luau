@@ -1,3 +1,4 @@
+local useAsync = require(script["use-async"])
 local useAsyncCallback = require(script["use-async-callback"])
 local useAsyncEffect = require(script["use-async-effect"])
 local useBindingListener = require(script["use-binding-listener"])
@@ -15,6 +16,7 @@ local useUnmountEffect = require(script["use-unmount-effect"])
 local useUpdateEffect = require(script["use-update-effect"])
 
 return {
+	useAsync = useAsync,
 	useAsyncCallback = useAsyncCallback,
 	useAsyncEffect = useAsyncEffect,
 	useBindingListener = useBindingListener,
