@@ -4,6 +4,7 @@ local useAsyncEffect = require(script["use-async-effect"])
 local useBindingListener = require(script["use-binding-listener"])
 local useComposedRef = require(script["use-composed-ref"])
 local useDebounceCallback = require(script["use-debounce-callback"])
+local useDebounceEffect = require(script["use-debounce-effect"])
 local useDeferCallback = require(script["use-defer-callback"])
 local useDeferEffect = require(script["use-defer-effect"])
 local useEventListener = require(script["use-event-listener"])
@@ -23,6 +24,7 @@ return {
 	useBindingListener = useBindingListener,
 	useComposedRef = useComposedRef,
 	useDebounceCallback = useDebounceCallback,
+	useDebounceEffect = useDebounceEffect,
 	useDeferCallback = useDeferCallback,
 	useDeferEffect = useDeferEffect,
 	useEventListener = useEventListener,
