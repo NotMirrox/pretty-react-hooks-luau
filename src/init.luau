@@ -5,6 +5,7 @@ local useBindingListener = require(script["use-binding-listener"])
 local useComposedRef = require(script["use-composed-ref"])
 local useDebounceCallback = require(script["use-debounce-callback"])
 local useDeferCallback = require(script["use-defer-callback"])
+local useDeferEffect = require(script["use-defer-effect"])
 local useEventListener = require(script["use-event-listener"])
 local useInterval = require(script["use-interval"])
 local useLatest = require(script["use-latest"])
@@ -23,6 +24,7 @@ return {
 	useComposedRef = useComposedRef,
 	useDebounceCallback = useDebounceCallback,
 	useDeferCallback = useDeferCallback,
+	useDeferEffect = useDeferEffect,
 	useEventListener = useEventListener,
 	useInterval = useInterval,
 	useLatest = useLatest,
