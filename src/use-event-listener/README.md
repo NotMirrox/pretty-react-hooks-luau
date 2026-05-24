@@ -1,9 +1,9 @@
 ## 🪝 `useEventListener`
 
 ```luau
-function useEventListener(
-	event: any?,
-	listener: ((...any) -> ())?,
+function useEventListener<T...>(
+	event: EventLike<T...>?,
+	listener: ((T...) -> ())?,
 	options: { connected: boolean?, once: boolean? }?
 ): ()
 ```

@@ -1,6 +1,7 @@
 local react = require(script.Parent.Parent.React)
 
-type EffectCallback = (() -> ()) | (() -> () -> ())
+type Callback = () -> ()
+type EffectCallback = (() -> Callback) | Callback
 
 --[[
 	Runs a callback when the component is mounted.

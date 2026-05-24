@@ -1,7 +1,7 @@
 ## 🪝 `useMountEffect`
 
 ```luau
-function useMountEffect(callback: (() -> ()) | (() -> (() -> ()))): ()
+function useMountEffect(callback: () -> (() -> ())?): ()
 ```
 
 Runs a callback when the component mounts. May return a cleanup function that runs on unmount.

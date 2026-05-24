@@ -1,10 +1,7 @@
 ## 🪝 `useAsyncEffect`
 
 ```luau
-function useAsyncEffect(
-	effect: (() -> ()) | (() -> () -> ()) | () -> Promise,
-	deps: { any }
-): ()
+function useAsyncEffect(effect: (() -> ()) | () -> Promise, deps: { any }): ()
 ```
 
 Runs an async effect and cancels the promise when unmounting the effect or when

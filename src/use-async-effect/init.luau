@@ -3,7 +3,7 @@ local react = require(script.Parent.Parent.React)
 
 type Promise = Promise.Promise
 
-type EffectCallback = (() -> ()) | (() -> () -> ())
+type EffectCallback = () -> ()
 type PromiseCallback = () -> Promise
 
 type Callback = EffectCallback | PromiseCallback
@@ -16,7 +16,7 @@ type Callback = EffectCallback | PromiseCallback
 	@param effect The async effect to run.
 	@param deps The dependencies to run the effect on.
 ]]
-local function useAsyncEffect(effect: Callback, deps: { any }): ()
+local function useAsyncEffect(effect: Callback, deps: { any }?): ()
 	react.useEffect(function()
 		local callback: Promise
 		if Promise.is(effect) then
