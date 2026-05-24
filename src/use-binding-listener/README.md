@@ -1,7 +1,10 @@
 ## 🪝 `useBindingListener`
 
 ```luau
-function useBindingListener<T>(value: T | Binding<T>, listener: (value: T) -> ()): ()
+function useBindingListener<T>(
+	value: T | Binding<T>,
+	listener: (value: T) -> ()
+): ()
 ```
 
 Subscribes the given listener to binding updates. The listener will be called with the current value of the binding when the component is mounted, and then again whenever the binding updates.

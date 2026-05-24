@@ -1,10 +1,7 @@
 ## 🪝 `useDeferEffect`
 
 ```luau
-function useDeferEffect(
-	callback: () -> (),
-	deps: { any }?
-): ()
+function useDeferEffect(callback: () -> (), deps: { any }?): ()
 ```
 
 Like `useEffect`, but the callback will defer the update until the next Heartbeat frame. If multiple updates are scheduled, only the most recent will be applied.

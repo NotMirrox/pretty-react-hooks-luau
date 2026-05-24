@@ -1,7 +1,10 @@
 ## 🪝 `usePrevious`
 
 ```luau
-function usePrevious<T>(value: T, predicate: ((previous: T?, current: T) -> boolean)?): T?
+function usePrevious<T>(
+	value: T,
+	predicate: ((previous: T?, current: T) -> boolean)?
+): T?
 ```
 
 Returns a reference to the value from the previous render, or `nil` on the first render.

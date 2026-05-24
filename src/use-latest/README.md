@@ -1,7 +1,10 @@
 ## 🪝 `useLatest`
 
 ```luau
-function useLatest<T>(value: T, predicate: ((previous: T?, current: T) -> boolean)?): { current: T }
+function useLatest<T>(
+	value: T,
+	predicate: ((previous: T?, current: T) -> boolean)?
+): { current: T }
 ```
 
 Returns a ref object whose `current` property points to the latest version of the value.
