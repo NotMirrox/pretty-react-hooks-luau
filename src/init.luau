@@ -18,6 +18,7 @@ local useLifetime = require(script["use-lifetime"])
 local useMountEffect = require(script["use-mount-effect"])
 local useMouse = require(script["use-mouse"])
 local usePrevious = require(script["use-previous"])
+local useTagged = require(script["use-tagged"])
 local useTimeout = require(script["use-timeout"])
 local useUnmountEffect = require(script["use-unmount-effect"])
 local useUpdateEffect = require(script["use-update-effect"])
@@ -43,6 +44,7 @@ return {
 	useMountEffect = useMountEffect,
 	useMouse = useMouse,
 	usePrevious = usePrevious,
+	useTagged = useTagged,
 	useTimeout = useTimeout,
 	useUnmountEffect = useUnmountEffect,
 	useUpdateEffect = useUpdateEffect,
