@@ -20,6 +20,7 @@ export type UseThrottleOptions = {
 }
 
 export type UseDebounceResult<T> = useDebounceCallback.UseDebounceResult<T>
+export type Debounced<T> = useDebounceCallback.Debounced<T>
 
 type AnyCallback = (...any) -> ...any
 
