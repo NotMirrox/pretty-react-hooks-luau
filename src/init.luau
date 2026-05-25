@@ -22,6 +22,7 @@ local useMouse = require(script["use-mouse"])
 local usePrevious = require(script["use-previous"])
 local useTagged = require(script["use-tagged"])
 local useThrottleCallback = require(script["use-throttle-callback"])
+local useThrottleEffect = require(script["use-throttle-effect"])
 local useThrottleState = require(script["use-throttle-state"])
 local useTimeout = require(script["use-timeout"])
 local useTimer = require(script["use-timer"])
@@ -54,6 +55,7 @@ return {
 	usePrevious = usePrevious,
 	useTagged = useTagged,
 	useThrottleCallback = useThrottleCallback,
+	useThrottleEffect = useThrottleEffect,
 	useThrottleState = useThrottleState,
 	useTimeout = useTimeout,
 	useTimer = useTimer,
