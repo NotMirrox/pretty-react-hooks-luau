@@ -24,6 +24,7 @@ local useTimeout = require(script["use-timeout"])
 local useTimer = require(script["use-timer"])
 local useUnmountEffect = require(script["use-unmount-effect"])
 local useUpdateEffect = require(script["use-update-effect"])
+local useViewport = require(script["use-viewport"])
 
 return {
 	useAsync = useAsync,
@@ -52,4 +53,5 @@ return {
 	useTimer = useTimer,
 	useUnmountEffect = useUnmountEffect,
 	useUpdateEffect = useUpdateEffect,
+	useViewport = useViewport,
 }
