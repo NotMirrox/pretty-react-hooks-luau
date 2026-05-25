@@ -13,6 +13,7 @@ local useEventListener = require(script["use-event-listener"])
 local useInterval = require(script["use-interval"])
 local useLatest = require(script["use-latest"])
 local useLatestCallback = require(script["use-latest-callback"])
+local useLifetime = require(script["use-lifetime"])
 local useMountEffect = require(script["use-mount-effect"])
 local usePrevious = require(script["use-previous"])
 local useTimeout = require(script["use-timeout"])
@@ -35,6 +36,7 @@ return {
 	useInterval = useInterval,
 	useLatest = useLatest,
 	useLatestCallback = useLatestCallback,
+	useLifetime = useLifetime,
 	useMountEffect = useMountEffect,
 	usePrevious = usePrevious,
 	useTimeout = useTimeout,
