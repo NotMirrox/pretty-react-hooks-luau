@@ -5,7 +5,12 @@ local useLatest = require(script.Parent["use-latest"])
 
 --[[
 	Defers a callback to be executed on the next Heartbeat frame. Consecutive
-	calls to the returned `execute` function will cancel the previous call.
+	calls to the returned `execute` function will cancel the previous call, so
+	only the most recent invocation in a frame runs.
+
+	Useful for collapsing bursts of synchronous calls (e.g. rapid input
+	events) into a single batched update and for avoiding state writes during
+	the current frame's render.
 
 	@param callback The callback to defer.
 	@return execute The deferred function.

@@ -54,6 +54,9 @@ type AnyCallback = (...any) -> ...any
 	function. Subsequent calls to the debounced function return the result of
 	the last `callback` invocation.
 
+	Use `useThrottleCallback` instead when the callback should fire on a
+	regular cadence rather than waiting for input to settle.
+
 	See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
 	for details over the differences between `debounce` and `throttle`.
 
@@ -69,7 +72,7 @@ local function useDebounceCallback<T>(callback: T & AnyCallback, options: UseDeb
 		return debounce(function(...)
 			return (callbackRef.current :: any)(...)
 		end, resolvedOptions.wait, resolvedOptions)
-	end, {}) :: Debounced<T>
+	end, {})
 
 	useUnmountEffect(function()
 		debounced.cancel()

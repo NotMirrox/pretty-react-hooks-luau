@@ -10,6 +10,9 @@ type SetState<T> = (newValue: T | (prev: T) -> T) -> ()
 	last time the debounced function was invoked. Set to the most recently
 	passed `state` after the delay.
 
+	Use `useThrottleState` instead when state should update on a regular
+	cadence rather than waiting for input to settle.
+
 	See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
 	for details over the differences between `debounce` and `throttle`.
 

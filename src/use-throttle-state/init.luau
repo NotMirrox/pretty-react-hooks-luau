@@ -9,6 +9,9 @@ type SetState<T> = (newValue: T | (prev: T) -> T) -> ()
 	Creates a throttled state that only updates at most once per every `wait`
 	seconds. Set to the most recently passed `state` after each interval.
 
+	Use `useDebounceState` instead when state should wait for a burst of
+	updates to settle before applying the latest value.
+
 	See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
 	for details over the differences between `debounce` and `throttle`.
 

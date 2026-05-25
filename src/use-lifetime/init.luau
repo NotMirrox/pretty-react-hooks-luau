@@ -6,14 +6,15 @@ local useEventListener = require(script.Parent["use-event-listener"])
 export type Binding<T> = react.Binding<T>
 
 --[[
-	Returns the lifetime of the component in seconds. Updates every frame on
-	the Heartbeat event.
+	Returns a binding holding the number of seconds since the component
+	mounted. The binding is updated each Heartbeat frame, so reading it
+	through `useBinding` consumers does not re-render the component.
 
-	If the dependency array is provided, the lifetime timer will reset when
-	any of the dependencies change.
+	If the dependency array is provided, the lifetime timer will reset to `0`
+	when any of the dependencies change.
 
 	@param deps An optional array of dependencies to reset the timer.
-	@return A binding of the component's lifetime.
+	@return A binding of the component's lifetime in seconds.
 ]]
 local function useLifetime(deps: { any }?): Binding<number>
 	local resolvedDependencies = deps or {}

@@ -23,11 +23,19 @@ type PromiseCallback<T, U...> = (U...) -> TypedPromise<T>
 type Callback<T, U...> = EffectCallback<T, U...> | PromiseCallback<T, U...>
 
 --[[
-	Returns a tuple containing the current state of the promise and a callback
-	to start a new promise. Calling it will cancel any previous promise.
+	Returns the current state of the latest promise and an `execute` function
+	to start a new one. Calling `execute` cancels any in-flight promise from a
+	previous call. The pending promise is also cancelled on unmount.
+
+	The `status` field walks through `Started` → `Resolved` | `Rejected` |
+	`Cancelled`. Match on it to render loading/error/value states.
+
+	Use `useAsync` instead when the promise should re-run automatically as
+	dependencies change.
 
 	@param callback The async callback.
-	@return The state and a new callback.
+	@return state The current `AsyncState<T>` (status, value, message).
+	@return execute Starts a new promise, cancelling any previous one.
 ]]
 local function useAsyncCallback<T, U...>(callback: Callback<T, U...>): (AsyncState<T>, PromiseCallback<T, U...>)
 	local currentPromise = react.useRef(nil :: TypedPromise<T>?)

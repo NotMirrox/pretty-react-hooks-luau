@@ -11,13 +11,18 @@ type PromiseCallback<T> = () -> TypedPromise<T>
 type Callback<T> = EffectCallback<T> | PromiseCallback<T>
 
 --[[
-	Returns a tuple containing the result and status of a promise. When the
-	dependencies change, pending promises will be cancelled, and a new promise
-	will be started.
+	Runs an async callback whenever the dependencies change and returns its
+	current state. Pending promises are cancelled and replaced on dependency
+	change, so consumers always observe the latest run.
+
+	Use `useAsyncCallback` instead when the promise should be triggered
+	manually rather than reactively from deps.
 
 	@param callback The async callback.
 	@param deps The dependencies to watch. Defaults to an empty array.
-	@return The result and status of the promise.
+	@return value The resolved value, or `nil` while pending/rejected/cancelled.
+	@return status The promise status (`Started`, `Resolved`, `Cancelled`, or `Rejected`).
+	@return message The rejection reason or cancellation message, if any.
 ]]
 local function useAsync<T>(callback: Callback<T>, deps: { any }?): (T?, Status, any?)
 	local state, asyncCallback = useAsyncCallback(callback)

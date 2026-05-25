@@ -74,6 +74,12 @@ end
 	Subscribes to an event-like object. The subscription is automatically
 	disconnected when the component unmounts.
 
+	Accepts any of the common Roblox/Lua signal shapes — `RBXScriptSignal`,
+	tables exposing `Connect` / `connect` / `subscribe`, or a function that
+	takes the listener and returns a disconnect handle. For `RBXScriptSignal`,
+	a guard against deferred-event delivery after unmount is applied
+	automatically.
+
 	If the event or listener is `nil`, the event will not be subscribed to,
 	and the subscription will be disconnected if it was previously connected.
 

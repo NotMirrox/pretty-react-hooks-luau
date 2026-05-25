@@ -9,8 +9,9 @@ type Callback = () -> ()
 type EffectCallback = (() -> Callback) | Callback
 
 --[[
-	Creates a debounced effect that delays invoking `effect` until after `wait`
-	seconds have elapsed since the last time the debounced function was invoked.
+	Like `useEffect`, but `effect` runs only after `deps` have remained stable
+	for `wait` seconds. Each change to `deps` resets the timer. The pending
+	invocation is cancelled when the component unmounts.
 
 	See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
 	for details over the differences between `debounce` and `throttle`.

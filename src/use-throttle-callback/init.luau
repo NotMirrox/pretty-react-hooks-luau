@@ -30,6 +30,9 @@ type AnyCallback = (...any) -> ...any
 	provided to the throttled function. Subsequent calls to the throttled function
 	return the result of the last `callback` invocation.
 
+	Use `useDebounceCallback` instead when the callback should wait for a
+	burst of calls to settle before firing.
+
 	See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
 	for details over the differences between `throttle` and `debounce`.
 

@@ -9,8 +9,10 @@ type Callback = () -> ()
 type EffectCallback = (() -> Callback) | Callback
 
 --[[
-	Creates a throttled effect that only runs at most once per every `wait`
-	seconds.
+	Like `useEffect`, but `effect` runs at most once per `wait` seconds no
+	matter how often `deps` change. Unlike `useDebounceEffect`, intermediate
+	changes are not lost — the latest deps within a window flush at the end
+	of it. The pending invocation is cancelled when the component unmounts.
 
 	See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
 	for details over the differences between `debounce` and `throttle`.
