@@ -12,6 +12,7 @@ local useDeferCallback = require(script["use-defer-callback"])
 local useDeferEffect = require(script["use-defer-effect"])
 local useEventListener = require(script["use-event-listener"])
 local useInterval = require(script["use-interval"])
+local useKeyPress = require(script["use-key-press"])
 local useLatest = require(script["use-latest"])
 local useLatestCallback = require(script["use-latest-callback"])
 local useLifetime = require(script["use-lifetime"])
@@ -38,6 +39,7 @@ return {
 	useDeferEffect = useDeferEffect,
 	useEventListener = useEventListener,
 	useInterval = useInterval,
+	useKeyPress = useKeyPress,
 	useLatest = useLatest,
 	useLatestCallback = useLatestCallback,
 	useLifetime = useLifetime,
