@@ -2,6 +2,7 @@ local testez = require(script.Parent.Parent.utils.testez)
 local useDebounceEffect = require(script.Parent)
 
 local renderHook = testez.renderHook
+local act = testez.act
 
 return function()
 	local it, expect = testez.globals().it, testez.globals().expect
@@ -21,24 +22,32 @@ return function()
 		hook.rerender({ input = 1 })
 		expect(count).to.equal(0)
 
-		task.wait(0.04)
+		act(function()
+			task.wait(0.04)
+		end)
 		expect(count).to.equal(1)
 		hook.rerender({ input = 2 })
 		expect(count).to.equal(1)
 
-		task.wait(0.04)
+		act(function()
+			task.wait(0.04)
+		end)
 		expect(count).to.equal(2)
 		hook.rerender({ input = 2 })
 		expect(count).to.equal(2)
 
-		task.wait(0.04)
+		act(function()
+			task.wait(0.04)
+		end)
 		expect(count).to.equal(2)
 		hook.rerender({ input = 3 })
 		expect(count).to.equal(2)
 		hook.rerender({ input = 4 })
 		expect(count).to.equal(2)
 
-		task.wait(0.04)
+		act(function()
+			task.wait(0.04)
+		end)
 		expect(count).to.equal(3)
 
 		hook.unmount()

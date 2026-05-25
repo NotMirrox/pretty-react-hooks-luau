@@ -132,4 +132,5 @@ end
 return {
 	globals = globals,
 	renderHook = renderHook,
+	act = reactRoblox.act,
 }
