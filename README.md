@@ -1,61 +1,86 @@
-## 🌺 [pretty-react-hooks](https://npmjs.com/package/@rbxts/pretty-react-hooks)
+## 🌺 [pretty-react-hooks-luau](https://wally.run/package/notmirrox/pretty-react-hooks)
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/littensy/pretty-react-hooks/ci.yml?branch=master&style=for-the-badge&logo=github)
-[![npm version](https://img.shields.io/npm/v/@rbxts/pretty-react-hooks.svg?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@rbxts/pretty-react-hooks)
-[![npm downloads](https://img.shields.io/npm/dt/@rbxts/pretty-react-hooks.svg?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@rbxts/pretty-react-hooks)
-[![GitHub license](https://img.shields.io/github/license/littensy/pretty-react-hooks?style=for-the-badge)](LICENSE.md)
+[![GitHub license](https://img.shields.io/github/license/NotMirrox/pretty-react-hooks-luau?style=for-the-badge)](LICENSE.md)
 
-An opinionated collection of useful hooks and utilites for [React](https://github.com/littensy/rbxts-react) in [roblox-ts](https://roblox-ts.com).
+An opinionated collection of useful hooks and utilities for [React](https://github.com/jsdotlua/react-lua) on Roblox, ported to **Luau**.
 
-If you find a bug or have a feature request, please [open an issue](https://github.com/littensy/pretty-react-hooks/issues/new/).
+This is a Luau port of [littensy/pretty-react-hooks](https://github.com/littensy/pretty-react-hooks) (originally written for [roblox-ts](https://roblox-ts.com)). If you are on roblox-ts, use the original `@rbxts/pretty-react-hooks` package.
 
-&nbsp;
-
-## ⭐ Featured
-
-Check out some featured hooks:
-
--   [🦾 `useMotion`](src/use-motion/) - Creates a memoized Motion object set to the given initial value. Returns a binding that updates with the Motion, along with the Motion object.
--   [⏱️ `useAsync`](src/use-async/) - A hook that runs an async function and returns the result and status
--   [⚙️ `useTagged`](src/use-tagged/) - Tracks and returns a list of all instances with the given tag
-
-This package also exports some useful utilities:
-
--   [📕 `hoarcekat`](src/utils/hoarcekat.tsx) - Create a Hoarcekat story
--   [📦 `binding utils`](src/utils/binding.ts) - Work with values that may or may not be bindings
-
-Or, see the [full list of hooks](src/).
+If you find a bug or have a feature request, please [open an issue](https://github.com/NotMirrox/pretty-react-hooks-luau/issues/new/).
 
 &nbsp;
 
 ## 📦 Installation
 
-This package is available for Roblox TypeScript projects on [NPM](https://www.npmjs.com/package/@rbxts/pretty-react-hooks).
+This package is published to [Wally](https://wally.run). Add it to your `wally.toml`:
+
+```toml
+[dependencies]
+PrettyReactHooks = "notmirrox/pretty-react-hooks@0.1.0"
+```
+
+Then run:
 
 ```sh
-npm install @rbxts/pretty-react-hooks
-yarn add @rbxts/pretty-react-hooks
-pnpm add @rbxts/pretty-react-hooks
+wally install
 ```
+
+Wally packages are also consumable from [pesde](https://pesde.dev) via its wally compatibility index, so you can depend on this package from either toolchain.
+
+&nbsp;
+
+## 📊 Port Status
+
+**✅ Ported:** [`useAsync`](src/use-async/), [`useAsyncCallback`](src/use-async-callback/), [`useAsyncEffect`](src/use-async-effect/), [`useBindingListener`](src/use-binding-listener/), [`useBindingState`](src/use-binding-state/), [`useCamera`](src/use-camera/), [`useComposedRef`](src/use-composed-ref/), [`useDebounceCallback`](src/use-debounce-callback/), [`useDebounceEffect`](src/use-debounce-effect/), [`useDebounceState`](src/use-debounce-state/), [`useDeferCallback`](src/use-defer-callback/), [`useDeferEffect`](src/use-defer-effect/), [`useDeferState`](src/use-defer-state/), [`useEventListener`](src/use-event-listener/), [`useInterval`](src/use-interval/), [`useKeyPress`](src/use-key-press/), [`useLatest`](src/use-latest/), [`useLatestCallback`](src/use-latest-callback/), [`useLifetime`](src/use-lifetime/), [`useMountEffect`](src/use-mount-effect/), [`useMouse`](src/use-mouse/), [`usePrevious`](src/use-previous/), [`useTagged`](src/use-tagged/), [`useThrottleCallback`](src/use-throttle-callback/), [`useThrottleEffect`](src/use-throttle-effect/), [`useThrottleState`](src/use-throttle-state/), [`useTimeout`](src/use-timeout/), [`useTimer`](src/use-timer/), [`useUnmountEffect`](src/use-unmount-effect/), [`useUpdate`](src/use-update/), [`useUpdateEffect`](src/use-update-effect/), [`useViewport`](src/use-viewport/), [`binding`](src/utils/binding.luau) util.
+
+**⏳ Pending:** `hoarcekat` util.
+
+**🚫 Skipped:** `useMotion`, `useSpring` — use [`react-ripple`](https://github.com/littensy/ripple/tree/main/packages/react-ripple) instead.
 
 &nbsp;
 
 ## 🌻 Contributing
 
-Contributions are welcome! Note that if you make a change to a hook, you should also check the tests and documentation.
+Contributions are welcome. If you change a hook, update its tests and documentation as well.
 
-To get started, clone the repository and run `pnpm install`. Then, you can run the following commands:
+To get started:
 
--   `pnpm dev` - Enable watch mode with support for TestEZ Companion
--   `pnpm build` - Compile the package's `out` directory
+1. Install the toolchain with [Rokit](https://github.com/rojo-rbx/rokit):
+   ```sh
+   rokit install
+   ```
+   This installs `rojo`, `wally`, `selene`, and `stylua` at the versions pinned in [`rokit.toml`](rokit.toml).
+2. Install dependencies:
+   ```sh
+   wally install
+   ```
+3. Lint and format:
+   ```sh
+   selene src
+   stylua --check src
+   ```
+4. Serve the project to Roblox Studio:
+   ```sh
+   rojo serve
+   ```
+5. Run tests with [TestEZ](https://github.com/Roblox/testez). The recommended workflow is the [TestEZ Companion](https://marketplace.visualstudio.com/items?itemName=tacheometrist.testez-companion) VS Code extension, which discovers and runs `*.spec.luau` files inside Roblox Studio while `rojo serve` is connected.
 
-You will likely need the following extensions:
+Recommended VS Code extensions:
 
--   [Rojo VSCode extension](https://marketplace.visualstudio.com/items?itemName=evaera.vscode-rojo)
+-   [Rojo](https://marketplace.visualstudio.com/items?itemName=evaera.vscode-rojo)
+-   [Luau Language Server](https://marketplace.visualstudio.com/items?itemName=JohnnyMorganz.luau-lsp)
+-   [StyLua](https://marketplace.visualstudio.com/items?itemName=JohnnyMorganz.stylua)
+-   [Selene](https://marketplace.visualstudio.com/items?itemName=Kampfkarren.selene-vscode)
 -   [TestEZ Companion](https://marketplace.visualstudio.com/items?itemName=tacheometrist.testez-companion)
+
+&nbsp;
+
+## 🙏 Credits
+
+Originally created by [@littensy](https://github.com/littensy) as [pretty-react-hooks](https://github.com/littensy/pretty-react-hooks) for roblox-ts. Ported to native Luau by [@NotMirrox](https://github.com/NotMirrox).
 
 &nbsp;
 
 ## 📝 License
 
-pretty-react-hooks is licensed under the [MIT License](LICENSE.md).
+pretty-react-hooks-luau is licensed under the [MIT License](LICENSE.md).
