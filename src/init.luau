@@ -3,6 +3,7 @@ local useAsyncCallback = require(script["use-async-callback"])
 local useAsyncEffect = require(script["use-async-effect"])
 local useBindingListener = require(script["use-binding-listener"])
 local useBindingState = require(script["use-binding-state"])
+local useCamera = require(script["use-camera"])
 local useComposedRef = require(script["use-composed-ref"])
 local useDebounceCallback = require(script["use-debounce-callback"])
 local useDebounceEffect = require(script["use-debounce-effect"])
@@ -27,6 +28,7 @@ return {
 	useAsyncEffect = useAsyncEffect,
 	useBindingListener = useBindingListener,
 	useBindingState = useBindingState,
+	useCamera = useCamera,
 	useComposedRef = useComposedRef,
 	useDebounceCallback = useDebounceCallback,
 	useDebounceEffect = useDebounceEffect,
