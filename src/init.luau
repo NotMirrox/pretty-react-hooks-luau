@@ -15,6 +15,7 @@ local useLatest = require(script["use-latest"])
 local useLatestCallback = require(script["use-latest-callback"])
 local useLifetime = require(script["use-lifetime"])
 local useMountEffect = require(script["use-mount-effect"])
+local useMouse = require(script["use-mouse"])
 local usePrevious = require(script["use-previous"])
 local useTimeout = require(script["use-timeout"])
 local useUnmountEffect = require(script["use-unmount-effect"])
@@ -38,6 +39,7 @@ return {
 	useLatestCallback = useLatestCallback,
 	useLifetime = useLifetime,
 	useMountEffect = useMountEffect,
+	useMouse = useMouse,
 	usePrevious = usePrevious,
 	useTimeout = useTimeout,
 	useUnmountEffect = useUnmountEffect,
