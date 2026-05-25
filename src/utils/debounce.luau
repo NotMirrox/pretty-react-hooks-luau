@@ -80,9 +80,7 @@ local function debounce<T>(callback: T & AnyCallback, wait: number?, options: De
 		-- Reset any `maxWait` timer.
 		lastInvokeTime = time
 		-- Start the timer for the trailing edge.
-		cancelTimeout = setTimeout(function()
-			timerExpired()
-		end, resolvedWait)
+		cancelTimeout = setTimeout(timerExpired, resolvedWait)
 		-- Invoke the leading edge.
 		return if leading then invoke(time) else result
 	end
@@ -113,9 +111,7 @@ local function debounce<T>(callback: T & AnyCallback, wait: number?, options: De
 			return trailingEdge(time)
 		end
 		-- Restart the timer.
-		cancelTimeout = setTimeout(function()
-			timerExpired()
-		end, remainingWait(time))
+		cancelTimeout = setTimeout(timerExpired, remainingWait(time))
 		return nil
 	end
 
@@ -161,16 +157,12 @@ local function debounce<T>(callback: T & AnyCallback, wait: number?, options: De
 			end
 			if maxing then
 				-- Handle invocations in a tight loop.
-				cancelTimeout = setTimeout(function()
-					timerExpired()
-				end, resolvedWait)
+				cancelTimeout = setTimeout(timerExpired, resolvedWait)
 				return invoke(lastCallTime)
 			end
 		end
 		if cancelTimeout == nil then
-			cancelTimeout = setTimeout(function()
-				timerExpired()
-			end, resolvedWait)
+			cancelTimeout = setTimeout(timerExpired, resolvedWait)
 		end
 		return result
 	end
