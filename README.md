@@ -49,15 +49,18 @@ To get started:
    ```sh
    rokit install
    ```
-   This installs `rojo`, `wally`, `selene`, and `stylua` at the versions pinned in [`rokit.toml`](rokit.toml).
-2. Install dependencies:
+   This installs `rojo`, `wally`, `wally-package-types`, `selene`, and `stylua` at the versions pinned in [`rokit.toml`](rokit.toml).
+2. Install dependencies and inject Luau types into the resolved packages:
    ```sh
    wally install
+   wally-package-types --sourcemap sourcemap.json Packages
+   wally-package-types --sourcemap sourcemap.json DevPackages
    ```
+   Regenerate `sourcemap.json` with `rojo sourcemap default.project.json -o sourcemap.json` whenever the project structure changes.
 3. Lint and format:
    ```sh
    selene src
-   stylua --check src
+   stylua src
    ```
 4. Serve the project to Roblox Studio:
    ```sh
