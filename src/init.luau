@@ -21,6 +21,7 @@ local useMouse = require(script["use-mouse"])
 local usePrevious = require(script["use-previous"])
 local useTagged = require(script["use-tagged"])
 local useTimeout = require(script["use-timeout"])
+local useTimer = require(script["use-timer"])
 local useUnmountEffect = require(script["use-unmount-effect"])
 local useUpdateEffect = require(script["use-update-effect"])
 
@@ -48,6 +49,7 @@ return {
 	usePrevious = usePrevious,
 	useTagged = useTagged,
 	useTimeout = useTimeout,
+	useTimer = useTimer,
 	useUnmountEffect = useUnmountEffect,
 	useUpdateEffect = useUpdateEffect,
 }
