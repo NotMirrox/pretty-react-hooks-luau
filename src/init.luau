@@ -10,6 +10,7 @@ local useDebounceEffect = require(script["use-debounce-effect"])
 local useDebounceState = require(script["use-debounce-state"])
 local useDeferCallback = require(script["use-defer-callback"])
 local useDeferEffect = require(script["use-defer-effect"])
+local useDeferState = require(script["use-defer-state"])
 local useEventListener = require(script["use-event-listener"])
 local useInterval = require(script["use-interval"])
 local useKeyPress = require(script["use-key-press"])
@@ -39,6 +40,7 @@ return {
 	useDebounceState = useDebounceState,
 	useDeferCallback = useDeferCallback,
 	useDeferEffect = useDeferEffect,
+	useDeferState = useDeferState,
 	useEventListener = useEventListener,
 	useInterval = useInterval,
 	useKeyPress = useKeyPress,
