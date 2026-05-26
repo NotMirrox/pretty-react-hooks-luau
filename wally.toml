@@ -1,7 +1,7 @@
 [package]
 name = "notmirrox/pretty-react-hooks"
 description = "A collection of useful hooks for React"
-version = "0.1.0"
+version = "0.1.1"
 license = "MIT"
 authors = ["mirrox", "littensy"]
 
@@ -16,6 +16,7 @@ exclude = [
     "test.project.json",
     "testez-companion.toml",
     "**/*.spec.luau",
+    "src/utils/testez.luau",
 ]
 
 [place]
