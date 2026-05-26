@@ -76,8 +76,8 @@ end
 local function joinAnyBindings<K, V>(bindings: { [any]: any }): Binding<any>
 	local bindingsToMap = {}
 
-	for k, v in bindings do
-		bindingsToMap[k] = toBinding(v)
+	for key, value in bindings do
+		bindingsToMap[key] = toBinding(value)
 	end
 
 	return react.joinBindings(bindingsToMap)
@@ -135,8 +135,8 @@ local function composeBindings(...: any): Binding<any>
 	values[length] = nil
 
 	local bindings = {}
-	for i, value in ipairs(values) do
-		bindings[i] = toBinding(value)
+	for index, value in ipairs(values) do
+		bindings[index] = toBinding(value)
 	end
 
 	return react.joinBindings(bindings):map(function(boundValues)
