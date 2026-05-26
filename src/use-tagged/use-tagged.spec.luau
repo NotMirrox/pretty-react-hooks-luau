@@ -95,4 +95,45 @@ return function()
 		expect(hook.result.current[1]).to.equal(addedInstance)
 		hook.unmount()
 	end)
+
+	it("should track multiple instances under the same tag", function()
+		local hook = renderHook(function()
+			return useTagged(TEST_TAG)
+		end)
+
+		local first = addTaggedInstance("Model", TEST_TAG)
+		local second = addTaggedInstance("Model", TEST_TAG)
+		local third = addTaggedInstance("Folder", TEST_TAG)
+
+		expect(#hook.result.current).to.equal(3)
+		expect(table.find(hook.result.current, first)).to.be.ok()
+		expect(table.find(hook.result.current, second)).to.be.ok()
+		expect(table.find(hook.result.current, third)).to.be.ok()
+
+		hook.unmount()
+	end)
+
+	it("should produce a new array reference on change", function()
+		local hook = renderHook(function()
+			return useTagged(TEST_TAG)
+		end)
+
+		local first = hook.result.current
+		addTaggedInstance("Model", TEST_TAG)
+		expect(hook.result.current).never.to.equal(first)
+
+		hook.unmount()
+	end)
+
+	it("should stop reacting to tag changes after unmount", function()
+		local hook = renderHook(function()
+			return useTagged(TEST_TAG)
+		end)
+
+		hook.unmount()
+
+		expect(function()
+			addTaggedInstance("Model", TEST_TAG)
+		end).never.to.throw()
+	end)
 end

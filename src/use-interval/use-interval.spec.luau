@@ -105,4 +105,70 @@ return function()
 		expect(count).to.equal(0)
 		hook.unmount()
 	end)
+
+	it("should fire immediately when immediate is true", function()
+		local count = 0
+		local hook = renderHook(function()
+			useInterval(function()
+				count += 1
+			end, 0.2, { immediate = true })
+			return nil
+		end)
+
+		expect(count).to.equal(1)
+		hook.unmount()
+	end)
+
+	it("should not fire immediately when immediate is false", function()
+		local count = 0
+		local hook = renderHook(function()
+			useInterval(function()
+				count += 1
+			end, 0.2)
+			return nil
+		end)
+
+		expect(count).to.equal(0)
+		hook.unmount()
+	end)
+
+	it("should be safe to call clear more than once", function()
+		local count = 0
+		local hook = renderHook(function()
+			return useInterval(function()
+				count += 1
+			end, 0.06)
+		end)
+
+		hook.result.current()
+		hook.result.current()
+		hook.result.current()
+
+		task.wait(0.08)
+		expect(count).to.equal(0)
+		hook.unmount()
+	end)
+
+	it("should call the latest callback after a rerender", function()
+		local first, second = 0, 0
+		local hook = renderHook(function(props: { callback: () -> () })
+			useInterval(props.callback, 0.04)
+			return nil
+		end, { initialProps = {
+			callback = function()
+				first += 1
+			end,
+		} })
+
+		hook.rerender({
+			callback = function()
+				second += 1
+			end,
+		})
+
+		task.wait(0.06)
+		expect(second >= 1).to.equal(true)
+		expect(first).to.equal(0)
+		hook.unmount()
+	end)
 end

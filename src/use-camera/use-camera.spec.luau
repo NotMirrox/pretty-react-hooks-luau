@@ -35,4 +35,18 @@ return function()
 		expect(hook.result.current).to.equal(Workspace.CurrentCamera)
 		hook.unmount()
 	end)
+
+	it("should not error after unmount when CurrentCamera changes", function()
+		local hook = renderHook(function()
+			return useCamera()
+		end)
+
+		hook.unmount()
+
+		local oldCamera = Workspace.CurrentCamera
+		if oldCamera then
+			oldCamera:Destroy()
+		end
+		RunService.Heartbeat:Wait()
+	end)
 end

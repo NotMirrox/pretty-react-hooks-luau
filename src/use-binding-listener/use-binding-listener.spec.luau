@@ -110,4 +110,71 @@ return function()
 		hook.rerender({ value = 1 })
 		expect(result).to.equal(1)
 	end)
+
+	it("should stop reacting to the previous binding after the binding prop changes", function()
+		local bindingA, setBindingA = react.createBinding(0)
+		local bindingB = react.createBinding(99)
+		local calls = 0
+
+		local hook = renderHook(function(props: { binding: typeof(bindingA) })
+			useBindingListener(props.binding, function()
+				calls += 1
+			end)
+			return nil
+		end, { initialProps = { binding = bindingA } })
+
+		local baseline = calls
+
+		hook.rerender({ binding = bindingB })
+		local afterSwap = calls
+
+		setBindingA(42)
+		expect(calls).to.equal(afterSwap)
+
+		hook.unmount()
+		expect(baseline > 0).to.equal(true)
+	end)
+
+	it("should stop reacting to the binding after unmount", function()
+		local binding, setBinding = react.createBinding(0)
+		local calls = 0
+
+		local hook = renderHook(function()
+			useBindingListener(binding, function()
+				calls += 1
+			end)
+			return nil
+		end)
+
+		hook.unmount()
+
+		local afterUnmount = calls
+		setBinding(7)
+		expect(calls).to.equal(afterUnmount)
+	end)
+
+	it("should call the latest listener after a rerender", function()
+		local binding, setBinding = react.createBinding(0)
+		local first, second = 0, 0
+
+		local hook = renderHook(function(props: { listener: (value: number) -> () })
+			useBindingListener(binding, props.listener)
+			return nil
+		end, { initialProps = {
+			listener = function()
+				first += 1
+			end,
+		} })
+
+		hook.rerender({
+			listener = function()
+				second += 1
+			end,
+		})
+
+		setBinding(1)
+		expect(second >= 1).to.equal(true)
+
+		hook.unmount()
+	end)
 end

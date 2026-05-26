@@ -45,4 +45,56 @@ return function()
 		hook.rerender({ state = value2 })
 		expect(hook.result.current.current).to.equal(value2)
 	end)
+
+	it("should receive the previous and current value in the predicate", function()
+		local seen: { { previous: any, current: any } } = {}
+
+		local hook = renderHook(function(props: { value: number })
+			return useLatest(props.value, function(previous, current)
+				table.insert(seen, { previous = previous, current = current })
+				return previous == current
+			end)
+		end, { initialProps = { value = 0 } })
+
+		hook.rerender({ value = 1 })
+		hook.rerender({ value = 2 })
+
+		expect(#seen >= 2).to.equal(true)
+		local last = seen[#seen]
+		expect(last.current).to.equal(2)
+		expect(last.previous).to.equal(1)
+
+		hook.unmount()
+	end)
+
+	it("should keep the same ref table identity across renders", function()
+		local hook = renderHook(function(props: { value: number })
+			return useLatest(props.value)
+		end, { initialProps = { value = 0 } })
+
+		local refTable = hook.result.current
+		hook.rerender({ value = 1 })
+		expect(hook.result.current).to.equal(refTable)
+
+		hook.rerender({ value = 2 })
+		expect(hook.result.current).to.equal(refTable)
+
+		hook.unmount()
+	end)
+
+	it("should track values through nil", function()
+		local hook = renderHook(function(props: { value: number? })
+			return useLatest(props.value)
+		end, { initialProps = { value = nil :: number? } })
+
+		expect(hook.result.current.current).to.equal(nil)
+
+		hook.rerender({ value = 5 })
+		expect(hook.result.current.current).to.equal(5)
+
+		hook.rerender({ value = nil })
+		expect(hook.result.current.current).to.equal(nil)
+
+		hook.unmount()
+	end)
 end

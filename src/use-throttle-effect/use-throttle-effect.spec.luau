@@ -44,4 +44,67 @@ return function()
 
 		hook.unmount()
 	end)
+
+	it("should skip the leading edge when leading is false", function()
+		local count = 0
+		local hook = renderHook(function(props: { input: number })
+			useThrottleEffect(function()
+				count += 1
+			end, { props.input }, { wait = 0.05, leading = false })
+			return nil
+		end, { initialProps = { input = 0 } })
+
+		hook.rerender({ input = 1 })
+		expect(count).to.equal(0)
+
+		act(function()
+			task.wait(0.07)
+		end)
+		expect(count).to.equal(1)
+
+		hook.unmount()
+	end)
+
+	it("should skip the trailing edge when trailing is false", function()
+		local count = 0
+		local hook = renderHook(function(props: { input: number })
+			useThrottleEffect(function()
+				count += 1
+			end, { props.input }, { wait = 0.05, trailing = false })
+			return nil
+		end, { initialProps = { input = 0 } })
+
+		hook.rerender({ input = 1 })
+		expect(count).to.equal(1)
+		hook.rerender({ input = 2 })
+		hook.rerender({ input = 3 })
+		expect(count).to.equal(1)
+
+		act(function()
+			task.wait(0.07)
+		end)
+		expect(count).to.equal(1)
+
+		hook.unmount()
+	end)
+
+	it("should cancel pending effect on unmount", function()
+		local count = 0
+		local hook = renderHook(function(props: { input: number })
+			useThrottleEffect(function()
+				count += 1
+			end, { props.input }, { wait = 0.05 })
+			return nil
+		end, { initialProps = { input = 0 } })
+
+		hook.rerender({ input = 1 })
+		expect(count).to.equal(1)
+
+		hook.rerender({ input = 2 })
+		hook.unmount()
+		act(function()
+			task.wait(0.07)
+		end)
+		expect(count).to.equal(1)
+	end)
 end

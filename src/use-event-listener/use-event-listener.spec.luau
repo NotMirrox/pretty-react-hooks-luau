@@ -225,4 +225,93 @@ return function()
 		expect(calls).to.equal(2)
 		hook.unmount()
 	end)
+
+	it("should not connect when event is nil", function()
+		local hook = renderHook(function(props: { event: typeof(createSignal())? })
+			useEventListener(props.event, function() end)
+			return nil
+		end, { initialProps = { event = nil } })
+
+		hook.unmount()
+	end)
+
+	it("should not connect when listener is nil", function()
+		local signal = createSignal()
+
+		local hook = renderHook(function(props: { listener: (() -> ())? })
+			useEventListener(signal, props.listener)
+			return nil
+		end, { initialProps = { listener = nil } })
+
+		expect(countListeners(signal)).to.equal(0)
+		hook.unmount()
+	end)
+
+	it("should connect once the listener becomes non-nil", function()
+		local signal = createSignal()
+		local calls = 0
+
+		local hook = renderHook(function(props: { listener: (() -> ())? })
+			useEventListener(signal, props.listener)
+			return nil
+		end, { initialProps = { listener = nil } })
+
+		expect(countListeners(signal)).to.equal(0)
+
+		hook.rerender({
+			listener = function()
+				calls += 1
+			end,
+		})
+		expect(countListeners(signal)).to.equal(1)
+
+		signal.fire()
+		expect(calls).to.equal(1)
+
+		hook.rerender({ listener = nil })
+		expect(countListeners(signal)).to.equal(0)
+		signal.fire()
+		expect(calls).to.equal(1)
+
+		hook.unmount()
+	end)
+
+	it("should disconnect when the connected flag flips to false", function()
+		local signal = createSignal()
+
+		local hook = renderHook(function(props: { connected: boolean })
+			useEventListener(signal, function() end, { connected = props.connected })
+			return nil
+		end, { initialProps = { connected = true } })
+
+		expect(countListeners(signal)).to.equal(1)
+		hook.rerender({ connected = false })
+		expect(countListeners(signal)).to.equal(0)
+
+		hook.unmount()
+	end)
+
+	it("should call the latest listener after rerender", function()
+		local signal = createSignal()
+		local target = "first"
+
+		local hook = renderHook(function(props: { listener: () -> () })
+			useEventListener(signal, props.listener)
+			return nil
+		end, { initialProps = {
+			listener = function()
+				target = "first-handler"
+			end,
+		} })
+
+		hook.rerender({
+			listener = function()
+				target = "second-handler"
+			end,
+		})
+
+		signal.fire()
+		expect(target).to.equal("second-handler")
+		hook.unmount()
+	end)
 end
