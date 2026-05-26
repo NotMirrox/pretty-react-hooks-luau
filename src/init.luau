@@ -1,3 +1,9 @@
+local binding = require(script.utils.binding)
+local debounce = require(script.utils.debounce)
+local setInterval = require(script.utils["set-interval"])
+local setTimeout = require(script.utils["set-timeout"])
+local testez = require(script.utils.testez)
+local throttle = require(script.utils.throttle)
 local useAsync = require(script["use-async"])
 local useAsyncCallback = require(script["use-async-callback"])
 local useAsyncEffect = require(script["use-async-effect"])
@@ -30,6 +36,7 @@ local useUnmountEffect = require(script["use-unmount-effect"])
 local useUpdateEffect = require(script["use-update-effect"])
 local useViewport = require(script["use-viewport"])
 
+-- Re-exports from hooks.
 export type AsyncState<T> = useAsyncCallback.AsyncState<T>
 export type Debounced<T> = useDebounceCallback.Debounced<T>
 export type UseDebounceOptions = useDebounceCallback.UseDebounceOptions
@@ -43,7 +50,27 @@ export type Timer = useTimer.Timer
 export type UseIntervalOptions = useInterval.UseIntervalOptions
 export type UseThrottleOptions = useThrottleCallback.UseThrottleOptions
 
+-- Re-exports from utilities.
+export type Binding<T> = binding.Binding<T>
+export type BindingApi<T> = binding.BindingApi<T>
+export type BindingOrValue<T> = binding.BindingOrValue<T>
+export type ExpectChain = testez.ExpectChain
+export type RenderHookOptions<Props> = testez.RenderHookOptions<Props>
+export type RenderHookResult<Result, Props> = testez.RenderHookResult<Result, Props>
+export type TestezCallback = testez.TestezCallback
+export type TestezContext = testez.TestezContext
+export type TestezGlobals = testez.TestezGlobals
+export type ThrottleOptions = throttle.ThrottleOptions
+export type DebounceOptions = debounce.DebounceOptions
+
 return {
+	binding = binding,
+	debounce = debounce,
+	setInterval = setInterval,
+	setTimeout = setTimeout,
+	testez = testez,
+	throttle = throttle,
+
 	useAsync = useAsync,
 	useAsyncCallback = useAsyncCallback,
 	useAsyncEffect = useAsyncEffect,
