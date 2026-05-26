@@ -30,6 +30,19 @@ local useUnmountEffect = require(script["use-unmount-effect"])
 local useUpdateEffect = require(script["use-update-effect"])
 local useViewport = require(script["use-viewport"])
 
+export type AsyncState<T> = useAsyncCallback.AsyncState<T>
+export type Debounced<T> = useDebounceCallback.Debounced<T>
+export type UseDebounceOptions = useDebounceCallback.UseDebounceOptions
+export type UseDebounceResult<T> = useDebounceCallback.UseDebounceResult<T>
+export type EventListenerOptions = useEventListener.EventListenerOptions
+export type KeyCode = useKeyPress.KeyCode
+export type KeyCodes = useKeyPress.KeyCodes
+export type KeyPressOptions = useKeyPress.KeyPressOptions
+export type RefFunction<T> = useComposedRef.RefFunction<T>
+export type Timer = useTimer.Timer
+export type UseIntervalOptions = useInterval.UseIntervalOptions
+export type UseThrottleOptions = useThrottleCallback.UseThrottleOptions
+
 return {
 	useAsync = useAsync,
 	useAsyncCallback = useAsyncCallback,
