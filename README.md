@@ -16,7 +16,7 @@ This package is published to [Wally](https://wally.run). Add it to your `wally.t
 
 ```toml
 [dependencies]
-PrettyReactHooks = "notmirrox/pretty-react-hooks@0.1.0"
+PrettyReactHooks = "notmirrox/pretty-react-hooks@0.1.1"
 ```
 
 Then run:
