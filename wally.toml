@@ -8,6 +8,16 @@ authors = ["mirrox", "littensy"]
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
+exclude = [
+    "rokit.toml",
+    "selene.toml",
+    "selene_definitions.yaml",
+    "stylua.toml",
+    "test.project.json",
+    "testez-companion.toml",
+    "**/*.spec.luau",
+]
+
 [place]
 shared-packages = "game.ReplicatedStorage.Packages"
 
