@@ -33,6 +33,7 @@ local useThrottleState = require(script["use-throttle-state"])
 local useTimeout = require(script["use-timeout"])
 local useTimer = require(script["use-timer"])
 local useUnmountEffect = require(script["use-unmount-effect"])
+local useUpdate = require(script["use-update"])
 local useUpdateEffect = require(script["use-update-effect"])
 local useViewport = require(script["use-viewport"])
 
@@ -100,6 +101,7 @@ return {
 	useTimeout = useTimeout,
 	useTimer = useTimer,
 	useUnmountEffect = useUnmountEffect,
+	useUpdate = useUpdate,
 	useUpdateEffect = useUpdateEffect,
 	useViewport = useViewport,
 }
