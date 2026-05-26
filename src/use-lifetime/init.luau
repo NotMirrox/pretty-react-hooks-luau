@@ -3,7 +3,7 @@ local RunService = game:GetService("RunService")
 local react = require(script.Parent.Parent.React)
 local useEventListener = require(script.Parent["use-event-listener"])
 
-export type Binding<T> = react.Binding<T>
+type Binding<T> = react.Binding<T>
 
 --[[
 	Returns a binding holding the number of seconds since the component
